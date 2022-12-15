@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 注解
+    implementation 'org.jetbrains:annotations:20.1.0'
+
+    //spring boot web
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.5'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.4.5')
+    // spring boot starter
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf:2.7.2")
+
+    // 测试
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+    testImplementation 'junit:junit:4.13.1'
+
+    // 日志打印
+    implementation 'org.slf4j:slf4j-api:1.7.15'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
