@@ -1,54 +1,76 @@
 package com.algorithm.impl;
 
 import com.algorithm.Solver;
+import com.common.parameter.SimulatedAnnealingParameter;
 import com.common.util.Util;
-import com.entity.tsp.model.City;
-import com.entity.tsp.model.TravellingSalesmanProblem;
-import com.entity.tsp.parameter.SimulatedAnnealingParameter;
+import com.entity.tsp.City;
+import com.entity.tsp.TravellingSalesmanProblem;
+import com.entity.tsp.TravellingSalesmanSolution;
+import com.plot.PlotTour;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
 /**
  * @author liucui
  */
 @Slf4j
 public class SimulatedAnnealing implements Solver {
     @Override
-    public int[] solve(TravellingSalesmanProblem problem) {
+    public TravellingSalesmanSolution solve(TravellingSalesmanProblem problem) {
+        TravellingSalesmanSolution solution = new TravellingSalesmanSolution();
         int[] sequence = init(problem);
-        return optimize(sequence, problem);
+        int[] bestSequence = optimize(sequence, problem);
+        double cost = cost(bestSequence, problem);
+        List<Integer> collect = Arrays.stream(bestSequence).boxed().collect(Collectors.toList());
+        solution.setSequence(collect);
+        solution.setBestCost(cost);
+        return solution;
     }
+
 
     private int[] optimize(int[] sequence, TravellingSalesmanProblem problem) {
         int[] bestSequence = copySequence(sequence);
         int[] currentSequence = copySequence(sequence);
+        double bestCost = 0D;
+        List<Double> costList = new ArrayList<>();
+        List<String> iterList = new ArrayList<>();
         double t = SimulatedAnnealingParameter.TEMPERATURE_START;
         double tK = SimulatedAnnealingParameter.TEMPERATURE_END;
         double ratio = SimulatedAnnealingParameter.COOL_RATE;
         double iteration = SimulatedAnnealingParameter.ITERATION;
         Random random = new Random();
+        int iter = 0;
         while (t > tK) {
-            int iter = 0;
-            while (iter < iteration) {
+            for (int i = 0; i < iteration; i++) {
                 int[] updateSequence = swap(currentSequence);
-                double delta = cost(updateSequence, problem) - cost(currentSequence, problem);
-                if (delta < 0) {
+                double curCost = cost(currentSequence, problem);
+                double updateCost = cost(updateSequence, problem);
+                if (acceptProbability(curCost, updateCost, t) >= random.nextDouble()) {
                     bestSequence = updateSequence;
                     currentSequence = updateSequence;
-                } else {
-                    double r = random.nextDouble();
-                    double p = Math.exp(-delta / t);
-                    if (p >= r) {
-                        currentSequence = updateSequence;
-                    }
+                    bestCost = cost(bestSequence, problem);
+
                 }
-                iter++;
             }
-            t *= ratio;
+            iter++;
+            t *= (1 - ratio);
+
+            costList.add(bestCost);
+            iterList.add(String.valueOf(iter));
         }
-        log.info("bestCost: {}", cost(bestSequence, problem));
-        log.info("bestSequence: {}", bestSequence);
+        PlotTour plotTour = new PlotTour();
+        plotTour.plot(costList, iterList);
         return bestSequence;
+    }
+
+    private double acceptProbability(double curCost, double updateCost, double t) {
+        double probability = Math.exp(-(updateCost - curCost) / t);
+        return updateCost < curCost ? 1 : probability;
     }
 
     private int[] init(TravellingSalesmanProblem problem) {

@@ -1,4 +1,4 @@
-package com.entity.tsp.model;
+package com.entity.tsp;
 
 import java.util.List;
 
@@ -7,14 +7,24 @@ import java.util.List;
  */
 
 public class TravellingSalesmanProblem {
+    private int size;
     private List<Integer> cityIdList;
     private List<City> cityList;
 
     public TravellingSalesmanProblem(){}
 
-    public TravellingSalesmanProblem(List<Integer> cityIdList, List<City> cityList){
+    public TravellingSalesmanProblem(int size, List<Integer> cityIdList, List<City> cityList){
+        this.size = size;
         this.cityIdList = cityIdList;
         this.cityList = cityList;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public void setCityList(List<City> cityList) {
@@ -43,7 +53,8 @@ public class TravellingSalesmanProblem {
     @Override
     public String toString() {
         return "TravellingSalesmanProblem{" +
-                "cityIdList=" + cityIdList +
+                "size=" + size +
+                ", cityIdList=" + cityIdList +
                 ", cityList=" + cityList +
                 '}';
     }

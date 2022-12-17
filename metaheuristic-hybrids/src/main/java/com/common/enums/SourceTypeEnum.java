@@ -11,7 +11,8 @@ public enum SourceTypeEnum {
      * tsp source data and opt tour solution
      */
     TSP_ATT_48(0, "att48.tsp.gz"),
-    TSP_ATT_48_OPT_TOUR(1, "att48.opt.tour.gz");
+//    TSP_ATT_48_OPT_TOUR(1, "att48.opt.tour.gz"),
+    TSP_ELI_51(2, "eil51.txt");
 
     /**
      * vrp source data and opt tour solution

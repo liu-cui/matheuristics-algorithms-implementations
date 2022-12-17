@@ -1,7 +1,8 @@
 package com.algorithm;
 
-import com.entity.tsp.model.TravellingSalesmanProblem;
+import com.entity.tsp.TravellingSalesmanProblem;
+import com.entity.tsp.TravellingSalesmanSolution;
 
 public interface Solver {
-    int[] solve(TravellingSalesmanProblem travellingSalesmanProblem);
+    TravellingSalesmanSolution solve(TravellingSalesmanProblem travellingSalesmanProblem);
 }

@@ -1,4 +1,4 @@
-package com.entity.tsp.model;
+package com.entity.tsp;
 
 /**
  * @author liucui

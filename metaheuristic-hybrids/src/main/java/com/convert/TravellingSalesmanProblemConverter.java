@@ -1,11 +1,10 @@
 package com.convert;
 
-import com.entity.tsp.model.City;
-import com.entity.tsp.model.TravellingSalesmanProblem;
+import com.entity.tsp.City;
+import com.entity.tsp.TravellingSalesmanProblem;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,13 +17,27 @@ import java.util.zip.GZIPInputStream;
  */
 @Slf4j
 public class TravellingSalesmanProblemConverter {
-
+    private static final String TXT_FILE = "txt";
+    private static final String GZ_FILE = "gz";
     private static final String FILE_PATH_PREFIX = "metaheuristic-hybrids/src/main/resources/tsp/";
     private static final int START_LINE_NO = 6;
 
-    public TravellingSalesmanProblem convert(String sourceType) {
-        String raw = FILE_PATH_PREFIX + sourceType;
+    public TravellingSalesmanProblem convert(String sourceType) throws IOException {
         TravellingSalesmanProblem problem = new TravellingSalesmanProblem();
+        String[] s = sourceType.split("\\.");
+        String fileType = s[s.length - 1];
+        if (GZ_FILE.equals(fileType)) {
+            problem = convertGzipFile(sourceType, problem);
+        }
+        if (TXT_FILE.equals(fileType)) {
+            problem = convertTxtFile(sourceType, problem);
+        }
+        return problem;
+    }
+
+    public TravellingSalesmanProblem convertGzipFile(String sourceType, TravellingSalesmanProblem problem) {
+        String raw = FILE_PATH_PREFIX + sourceType;
+        log.info(raw);
         try {
             InputStream in = new GZIPInputStream(Files.newInputStream(Paths.get(raw)));
             Scanner sc = new Scanner(in);
@@ -53,4 +66,53 @@ public class TravellingSalesmanProblemConverter {
         }
         return problem;
     }
+
+    public TravellingSalesmanProblem convertTxtFile(String sourceType, TravellingSalesmanProblem problem) throws IOException {
+        String raw = FILE_PATH_PREFIX + sourceType;
+        BufferedReader data = new BufferedReader(new InputStreamReader(new FileInputStream(raw)));
+        int citySize = 0;
+        List<Integer> cityIdList = new ArrayList<>();
+        List<City> cityList = new ArrayList<>();
+
+        String strBuffer;
+        String[] arrStrBuffer;
+        int id;
+        double x;
+        double y;
+
+
+        while ((strBuffer = data.readLine()) != null) {
+            if (strBuffer.startsWith("DIMENSION")) {
+                arrStrBuffer = strBuffer.trim().split(" ");
+                citySize = Integer.parseInt(String.valueOf(arrStrBuffer[2]));
+                problem.setSize(citySize);
+            }
+            if (!Character.isAlphabetic(strBuffer.charAt(0))) {
+                break;
+            }
+        }
+        assert strBuffer != null;
+        arrStrBuffer = strBuffer.split(" ");
+        id = Integer.parseInt(String.valueOf(arrStrBuffer[0]));
+        x = Double.parseDouble(String.valueOf(arrStrBuffer[1]));
+        y = Double.parseDouble(String.valueOf(arrStrBuffer[2]));
+        cityIdList.add(id);
+        cityList.add(new City(x, y));
+
+        for (int i = 1; i < citySize; i++) {
+            strBuffer = data.readLine();
+            arrStrBuffer = strBuffer.split(" ");
+            id = Integer.parseInt(String.valueOf(arrStrBuffer[0]));
+            x = Double.parseDouble(String.valueOf(arrStrBuffer[1]));
+            y = Double.parseDouble(String.valueOf(arrStrBuffer[2]));
+            cityIdList.add(id);
+            cityList.add(new City(x, y));
+        }
+        problem.setSize(citySize);
+        problem.setCityIdList(cityIdList);
+        problem.setCityList(cityList);
+        return problem;
+    }
+
 }
+
