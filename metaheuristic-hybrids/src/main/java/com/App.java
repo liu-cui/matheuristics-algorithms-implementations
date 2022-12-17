@@ -4,18 +4,12 @@ import com.common.enums.SourceTypeEnum;
 import com.strategy.BaseStrategy;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-
 @Slf4j
 public class App {
     public static void main(String[] args) {
-        log.info("hello world");
-        String type = SourceTypeEnum.TSP_ATT_48.getName();
-        log.info(type);
-        List<Integer> solution = new BaseStrategy().process(type);
-        log.info("solution: {}", solution);
+        BaseStrategy strategy = new BaseStrategy();
+        strategy.process(SourceTypeEnum.TSP_ATT_48.getName());
     }
-
 
 
     static void usage() {
@@ -33,6 +27,35 @@ public class App {
         }) {
             System.err.println(line);
         }
+    }
+}
+
+class Person implements Cloneable{
+    String name;
+
+    Person(){}
+
+    Person(String name) {
+        this.name = name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    @Override
+    public Person clone() {
+        Person p = null;
+        try {
+            p = (Person) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return p;
     }
 
 }

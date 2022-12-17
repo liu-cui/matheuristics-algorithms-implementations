@@ -1,7 +1,6 @@
 package com.entity.tsp.model;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author liucui
@@ -10,23 +9,18 @@ import java.util.Map;
 public class TravellingSalesmanProblem {
     private List<Integer> cityIdList;
     private List<City> cityList;
-    private Map<Integer, City> cityMap;
 
     public TravellingSalesmanProblem(){}
 
-    public TravellingSalesmanProblem(List<Integer> cityIdList, List<City> cityList, Map<Integer, City> cityMap){
+    public TravellingSalesmanProblem(List<Integer> cityIdList, List<City> cityList){
         this.cityIdList = cityIdList;
         this.cityList = cityList;
-        this.cityMap = cityMap;
     }
 
     public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
 
-    public void setCityMap(Map<Integer, City> cityMap) {
-        this.cityMap = cityMap;
-    }
 
     public void setCityIdList(List<Integer> cityIdList) {
         this.cityIdList = cityIdList;
@@ -36,9 +30,6 @@ public class TravellingSalesmanProblem {
         return cityList;
     }
 
-    public Map<Integer, City> getCityMap() {
-        return cityMap;
-    }
 
     public List<Integer> getCityIdList() {
         return cityIdList;
@@ -54,7 +45,6 @@ public class TravellingSalesmanProblem {
         return "TravellingSalesmanProblem{" +
                 "cityIdList=" + cityIdList +
                 ", cityList=" + cityList +
-                ", cityMap=" + cityMap +
                 '}';
     }
 }

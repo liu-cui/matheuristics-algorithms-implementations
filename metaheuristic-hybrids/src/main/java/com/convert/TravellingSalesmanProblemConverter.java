@@ -20,6 +20,7 @@ import java.util.zip.GZIPInputStream;
 public class TravellingSalesmanProblemConverter {
 
     private static final String FILE_PATH_PREFIX = "metaheuristic-hybrids/src/main/resources/tsp/";
+    private static final int START_LINE_NO = 6;
 
     public TravellingSalesmanProblem convert(String sourceType) {
         String raw = FILE_PATH_PREFIX + sourceType;
@@ -29,25 +30,19 @@ public class TravellingSalesmanProblemConverter {
             Scanner sc = new Scanner(in);
             int countNum = 1;
             int dimension = 0;
-            int startLineNo = 0;
             List<City> cityList = new ArrayList<>();
             List<Integer> cityIdList = new ArrayList<>();
             while (sc.hasNextLine()) {
                 String line = sc.nextLine().trim();
-                log.info(line);
+                String[] s = line.split(" ");
                 if (line.startsWith("DIMENSION")) {
-//                    String[] s = line.trim().split(" ");
-//                    dimension = Integer.parseInt(String.valueOf(s[2]));
-                    log.info(String.valueOf(dimension));
+                    dimension = Integer.parseInt(String.valueOf(s[2]));
                 }
-                if(line.startsWith("NODE_COORD_SECTION")){
-                    startLineNo = countNum;
-                    log.info("startLineNo {}", startLineNo);
-                }
-                if (countNum > startLineNo  + 2 && countNum < 30) {
-                    String[] s = line.trim().split(" ");
+                if (countNum > START_LINE_NO && countNum <= START_LINE_NO + dimension) {
                     City city = new City(Double.parseDouble(String.valueOf(s[1])), Double.parseDouble(String.valueOf(s[2])));
                     cityList.add(city);
+                    cityIdList.add(Integer.parseInt(String.valueOf(s[0])));
+
                 }
                 countNum += 1;
             }
@@ -56,9 +51,6 @@ public class TravellingSalesmanProblemConverter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        log.info(problem.getCityList().toString());
-
-
         return problem;
     }
 }
