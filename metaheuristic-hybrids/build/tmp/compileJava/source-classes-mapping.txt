@@ -14,14 +14,14 @@ com/common/util/Util.java
  com.common.util.Util
 com/entity/tsp/model/TravellingSalesmanProblem.java
  com.entity.tsp.model.TravellingSalesmanProblem
-com/algorithm/impl/SimulatedAnnealing.java
- com.algorithm.impl.SimulatedAnnealing
+com/convert/TravellingSalesmanProblemConverter.java
+ com.convert.TravellingSalesmanProblemConverter
 com/algorithm/Solver.java
  com.algorithm.Solver
-com/strategy/BaseStrategy.java
- com.strategy.BaseStrategy
 com/App.java
  com.App
  com.Person
-com/convert/TravellingSalesmanProblemConverter.java
- com.convert.TravellingSalesmanProblemConverter
+com/algorithm/impl/SimulatedAnnealing.java
+ com.algorithm.impl.SimulatedAnnealing
+com/strategy/BaseStrategy.java
+ com.strategy.BaseStrategy

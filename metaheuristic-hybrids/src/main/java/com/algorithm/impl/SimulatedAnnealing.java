@@ -5,11 +5,13 @@ import com.common.util.Util;
 import com.entity.tsp.model.City;
 import com.entity.tsp.model.TravellingSalesmanProblem;
 import com.entity.tsp.parameter.SimulatedAnnealingParameter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Random;
 /**
  * @author liucui
  */
+@Slf4j
 public class SimulatedAnnealing implements Solver {
     @Override
     public int[] solve(TravellingSalesmanProblem problem) {
@@ -23,7 +25,7 @@ public class SimulatedAnnealing implements Solver {
         double t = SimulatedAnnealingParameter.TEMPERATURE_START;
         double tK = SimulatedAnnealingParameter.TEMPERATURE_END;
         double ratio = SimulatedAnnealingParameter.COOL_RATE;
-        double iteration = 20 * sequence.length;
+        double iteration = SimulatedAnnealingParameter.ITERATION;
         Random random = new Random();
         while (t > tK) {
             int iter = 0;
@@ -44,6 +46,8 @@ public class SimulatedAnnealing implements Solver {
             }
             t *= ratio;
         }
+        log.info("bestCost: {}", cost(bestSequence, problem));
+        log.info("bestSequence: {}", bestSequence);
         return bestSequence;
     }
 
