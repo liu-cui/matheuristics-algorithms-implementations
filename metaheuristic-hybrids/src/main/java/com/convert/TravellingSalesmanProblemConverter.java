@@ -59,6 +59,8 @@ public class TravellingSalesmanProblemConverter {
                 }
                 countNum += 1;
             }
+            problem.setType(sourceType);
+            problem.setSize(cityList.size());
             problem.setCityList(cityList);
             problem.setCityIdList(cityIdList);
         } catch (IOException e) {
@@ -108,6 +110,7 @@ public class TravellingSalesmanProblemConverter {
             cityIdList.add(id);
             cityList.add(new City(x, y));
         }
+        problem.setType(sourceType);
         problem.setSize(citySize);
         problem.setCityIdList(cityIdList);
         problem.setCityList(cityList);
