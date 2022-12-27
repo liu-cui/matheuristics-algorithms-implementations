@@ -1,5 +1,6 @@
 package com.entity.tsp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,9 @@ public class Tour {
     private List<Double> costList;
 
     public Tour() {
+        this.bestCost = 0;
+        this.bestTour = new ArrayList<>();
+        this.costList = new ArrayList<>();
     }
 
     public Tour(double bestCost, List<Integer> bestTour, List<Double> costList) {

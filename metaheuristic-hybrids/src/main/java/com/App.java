@@ -18,7 +18,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         usage();
-        solveSingleProblem();
+        solveMultiProblem();
     }
 
     static void solveMultiProblem() throws IOException {
@@ -54,5 +54,6 @@ public class App {
             log.info(line);
         }
     }
+
 }
 
