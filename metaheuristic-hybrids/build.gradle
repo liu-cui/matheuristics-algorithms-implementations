@@ -39,9 +39,11 @@ dependencies {
     // 日志打印
     implementation 'org.slf4j:slf4j-api:1.7.15'
 
-    // 绘图: https://mvnrepository.com/artifact/org.jfree/jfreechart
+    // 绘图
     implementation 'org.jfree:jfreechart:1.0.19'
 
+    // json
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
 
 }
 

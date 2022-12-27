@@ -1,2 +1,2 @@
-com/algorithm/impl/MultiplierAdjustmentSA.java
- com.algorithm.impl.MultiplierAdjustmentSA
+com/MultiplierAdjustmentSA.java
+ com.MultiplierAdjustmentSA

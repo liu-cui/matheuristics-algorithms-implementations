@@ -1,8 +1,9 @@
-package com.algorithm.impl;
+package com;
 
 import com.algorithm.Solver;
 import com.common.parameter.SimulatedAnnealingParameter;
-import com.common.util.Util;
+import com.common.util.OperatorUtil;
+import com.common.util.PlotUtil;
 import com.entity.tsp.City;
 import com.entity.tsp.Tour;
 import com.entity.tsp.TravellingSalesmanProblem;
@@ -34,9 +35,10 @@ public class SimulatedAnnealing implements Solver {
 
 
     private int[] optimize(int[] sequence, TravellingSalesmanProblem problem) {
-        Util util = new Util();
-        int[] bestSequence = util.copySequence(sequence);
-        int[] currentSequence = util.copySequence(sequence);
+        OperatorUtil operatorUtil = new OperatorUtil();
+        PlotUtil plotUtil = new PlotUtil();
+        int[] bestSequence = operatorUtil.copySequence(sequence);
+        int[] currentSequence = operatorUtil.copySequence(sequence);
         double bestCost = 0D;
         List<Double> costList = new ArrayList<>();
         double t = SimulatedAnnealingParameter.TEMPERATURE_START;
@@ -47,10 +49,10 @@ public class SimulatedAnnealing implements Solver {
         int iter = 0;
         while (t > tK) {
             for (int i = 0; i < iteration; i++) {
-                int[] updatedSequence = util.swap(currentSequence);
+                int[] updatedSequence = operatorUtil.swap(currentSequence);
                 double curCost = cost(currentSequence, problem);
                 double updateCost = cost(updatedSequence, problem);
-                if (util.acceptProbability(curCost, updateCost, t) >= random.nextDouble()) {
+                if (operatorUtil.acceptProbability(curCost, updateCost, t) >= random.nextDouble()) {
                     bestSequence = updatedSequence;
                     currentSequence = updatedSequence;
                     bestCost = cost(bestSequence, problem);
@@ -62,7 +64,7 @@ public class SimulatedAnnealing implements Solver {
         }
         log.info("Simulated Annealing Iteration: {}", iter);
         log.info("Simulated Annealing Temperature {}", t);
-        util.plot(costList, problem.getType());
+        plotUtil.plot(costList, problem.getType());
         return bestSequence;
     }
 
@@ -76,7 +78,7 @@ public class SimulatedAnnealing implements Solver {
     }
 
     private double cost(int[] sequence, TravellingSalesmanProblem problem) {
-        Util util = new Util();
+        OperatorUtil operatorUtil = new OperatorUtil();
         int size = problem.getCityIdList().size();
         double cost = 0;
         for (int i = 0; i < size - 1; i++) {
@@ -84,12 +86,12 @@ public class SimulatedAnnealing implements Solver {
             int index2 = sequence[i + 1] - 1;
             City c1 = problem.getCityList().get(index1);
             City c2 = problem.getCityList().get(index2);
-            double dist = util.distance(c1.getX(), c1.getY(), c2.getX(), c2.getY());
+            double dist = operatorUtil.distance(c1.getX(), c1.getY(), c2.getX(), c2.getY());
             cost += dist;
         }
         City firstCity = problem.getCityList().get(sequence[0] - 1);
         City lastCity = problem.getCityList().get(sequence[size - 1] - 1);
-        cost += util.distance(firstCity.getX(), firstCity.getY(), lastCity.getX(), lastCity.getY());
+        cost += operatorUtil.distance(firstCity.getX(), firstCity.getY(), lastCity.getX(), lastCity.getY());
         return cost;
     }
 }

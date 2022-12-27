@@ -1,5 +1,4 @@
-# 除了日志，禁止使用SpringBoot组件
-
+## 目录
 
 ```
 ├─main
@@ -10,7 +9,7 @@
 │  │      ├─common
 │  │      │  ├─constant
 │  │      │  ├─enums
-│  │      │  └─util
+│  │      │  └─operatorUtil
 │  │      ├─convert
 │  │      ├─entity
 │  │      │  ├─tsp
