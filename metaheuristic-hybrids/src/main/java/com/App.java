@@ -18,7 +18,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         usage();
-        solveMultiProblem();
+        solveSingleProblem();
     }
 
     static void solveMultiProblem() throws IOException {

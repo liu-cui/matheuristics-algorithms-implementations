@@ -30,6 +30,23 @@ public class OperatorUtil {
         return exchange;
     }
 
+    public int[] reverse(int[] sequence) {
+        int size = sequence.length;
+        int start = new Random().nextInt(size / 2);
+        int end = new Random().nextInt(size);
+        while (start >= end) {
+            end = new Random().nextInt(size);
+        }
+        int n = end + start;
+        int[] exchange = copySequence(sequence);
+        for (int j = start; j < start + (end - start) / 2 + 1; j++) {
+            int temp = exchange[j];
+            exchange[j] = exchange[n - j];
+            exchange[n - j] = temp;
+        }
+        return exchange;
+    }
+
     public int[] copySequence(int[] sequence) {
         int[] out = new int[sequence.length];
         System.arraycopy(sequence, 0, out, 0, sequence.length);
