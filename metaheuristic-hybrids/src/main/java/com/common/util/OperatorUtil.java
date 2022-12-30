@@ -15,7 +15,7 @@ public class OperatorUtil {
         return f2 < f1 ? 1 : probability;
     }
 
-    public int[] swap(int[] sequence) {
+    public int[] exchange(int[] sequence) {
         Random random = new Random();
         int size = sequence.length;
         int p1 = random.nextInt(size);
@@ -23,12 +23,13 @@ public class OperatorUtil {
         while (p1 == p2) {
             p2 = random.nextInt(size);
         }
-        int[] exchange = copySequence(sequence);
-        int tmp = exchange[p1];
-        exchange[p1] = exchange[p2];
-        exchange[p2] = tmp;
-        return exchange;
+        int[] copyArray = copySequence(sequence);
+        int tmp = copyArray[p1];
+        copyArray[p1] = copyArray[p2];
+        copyArray[p2] = tmp;
+        return copyArray;
     }
+
 
     public int[] reverse(int[] sequence) {
         int size = sequence.length;
@@ -38,14 +39,19 @@ public class OperatorUtil {
             end = new Random().nextInt(size);
         }
         int n = end + start;
-        int[] exchange = copySequence(sequence);
+        int[] copyArray = copySequence(sequence);
         for (int j = start; j < start + (end - start) / 2 + 1; j++) {
-            int temp = exchange[j];
-            exchange[j] = exchange[n - j];
-            exchange[n - j] = temp;
+            int temp = copyArray[j];
+            copyArray[j] = copyArray[n - j];
+            copyArray[n - j] = temp;
         }
-        return exchange;
+        return copyArray;
     }
+
+    public int[] insert(int[] sequence){
+        return null;
+    }
+
 
     public int[] copySequence(int[] sequence) {
         int[] out = new int[sequence.length];

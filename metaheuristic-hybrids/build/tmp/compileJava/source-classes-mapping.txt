@@ -12,8 +12,8 @@ com/App.java
  com.App
 com/common/util/JsonUtil.java
  com.common.util.JsonUtil
-com/SimulatedAnnealing.java
- com.SimulatedAnnealing
+com/convert/TravellingSalesmanProblemConverter.java
+ com.convert.TravellingSalesmanProblemConverter
 com/entity/tsp/City.java
  com.entity.tsp.City
 com/entity/tsp/Tour.java
@@ -26,7 +26,7 @@ com/common/parameter/SimulatedAnnealingParameter.java
  com.common.parameter.SimulatedAnnealingParameter
 com/strategy/BaseStrategy.java
  com.strategy.BaseStrategy
+com/SimulatedAnnealing.java
+ com.SimulatedAnnealing
 com/common/util/PlotUtil.java
  com.common.util.PlotUtil
-com/convert/TravellingSalesmanProblemConverter.java
- com.convert.TravellingSalesmanProblemConverter

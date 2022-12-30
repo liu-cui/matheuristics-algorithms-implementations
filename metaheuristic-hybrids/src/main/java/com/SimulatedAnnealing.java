@@ -24,8 +24,7 @@ public class SimulatedAnnealing implements Solver {
     @Override
     public Tour solve(TravellingSalesmanProblem problem) {
         Tour solution = new Tour();
-//        int[] sequence = init(problem);
-        int[] sequence = {20, 47, 11, 23, 13, 21, 39, 32, 24, 10, 45, 35, 4, 26, 42, 2, 29, 5, 48, 25, 14, 34, 41, 16, 22, 3, 40, 1, 8, 9, 38, 31, 44, 18, 7, 28, 6, 37, 19, 27, 17, 43, 30, 36, 46, 33, 15, 12};
+        int[] sequence = init(problem);
         int[] bestSequence = optimize(sequence, problem);
         double cost = cost(bestSequence, problem);
         List<Integer> collect = Arrays.stream(bestSequence).boxed().collect(Collectors.toList());
