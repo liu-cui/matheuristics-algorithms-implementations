@@ -1,17 +1,15 @@
 com/common/enums/SourceTypeEnum.java
  com.common.enums.SourceTypeEnum
+com/convert/TravellingSalesmanProblemConverter.java
+ com.convert.TravellingSalesmanProblemConverter
 com/common/util/OperatorUtil.java
  com.common.util.OperatorUtil
 com/entity/demo/Capacity.java
  com.entity.demo.Capacity
-com/App.java
- com.App
 com/entity/tsp/TravellingSalesmanProblem.java
  com.entity.tsp.TravellingSalesmanProblem
-com/common/parameter/SimulatedAnnealingParameter.java
- com.common.parameter.SimulatedAnnealingParameter
-com/convert/TravellingSalesmanProblemConverter.java
- com.convert.TravellingSalesmanProblemConverter
+com/App.java
+ com.App
 com/common/util/JsonUtil.java
  com.common.util.JsonUtil
 com/entity/tsp/City.java
@@ -22,9 +20,11 @@ com/algorithm/Solver.java
  com.algorithm.Solver
 com/strategy/Strategy.java
  com.strategy.Strategy
-com/algorithm/SimulatedAnnealing.java
- com.algorithm.SimulatedAnnealing
+com/common/parameter/SimulatedAnnealingParameter.java
+ com.common.parameter.SimulatedAnnealingParameter
 com/strategy/BaseStrategy.java
  com.strategy.BaseStrategy
+com/algorithm/SimulatedAnnealing.java
+ com.algorithm.SimulatedAnnealing
 com/common/util/PlotUtil.java
  com.common.util.PlotUtil

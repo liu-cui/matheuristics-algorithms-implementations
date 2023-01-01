@@ -59,6 +59,7 @@ public class SimulatedAnnealing implements Solver {
                     bestSequence = currentSequence;
                     bestCost = cost(currentSequence, problem);
                 }
+                log.info(String.valueOf(bestCost));
 
             }
             costList.add(bestCost);

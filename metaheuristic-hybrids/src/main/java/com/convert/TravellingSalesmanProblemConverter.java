@@ -8,6 +8,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
@@ -49,7 +50,7 @@ public class TravellingSalesmanProblemConverter {
                 String line = sc.nextLine().trim();
                 String[] s = line.split(" ");
                 if (line.startsWith("DIMENSION")) {
-                    dimension = Integer.parseInt(String.valueOf(s[2]));
+                    dimension = Integer.parseInt(String.valueOf(s[s.length-1]));
                 }
                 if (countNum > START_LINE_NO && countNum <= START_LINE_NO + dimension) {
                     City city = new City(Double.parseDouble(String.valueOf(s[1])), Double.parseDouble(String.valueOf(s[2])));

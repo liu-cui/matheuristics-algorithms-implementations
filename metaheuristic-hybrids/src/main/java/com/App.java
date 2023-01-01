@@ -32,7 +32,7 @@ public class App {
     }
 
     static void solveSingleProblem() throws IOException {
-        String sourceType = SourceTypeEnum.TSP_ATT_48.getName();
+        String sourceType = SourceTypeEnum.TSP_ELI_51.getName();
         Tour solution = new BaseStrategy().process(sourceType);
         log.info("{} Tour", SourceTypeEnum.getEnumByName(sourceType));
         log.info("\t\tdistance: {}", solution.getBestCost());

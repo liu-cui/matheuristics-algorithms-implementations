@@ -3,11 +3,13 @@ package com.common.util;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.TextAnchor;
@@ -54,9 +56,10 @@ public class PlotUtil {
 //        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 //        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 //        rangeAxis.setAutoRangeIncludesZero(true);
-//        rangeAxis.setUpperMargin(0.020);
-//        rangeAxis.setLabelAngle(Math.PI / 2.0);
+//        rangeAxis.setUpperMargin(0.01);
+//        rangeAxis.setLabelAngle(90);
 //        rangeAxis.setAutoRange(true);
+
 
 
         /*显示数据标签*/
