@@ -30,7 +30,7 @@ public class PlotUtil {
         }
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < values.size(); i++) {
-            if(i%50==0){
+            if(i%100==0){
                 dataset.addValue(values.get(i), row.get(i), String.valueOf(i));
             }
         }

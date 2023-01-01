@@ -1,6 +1,6 @@
 package com.strategy;
 
-import com.SimulatedAnnealing;
+import com.algorithm.SimulatedAnnealing;
 import com.convert.TravellingSalesmanProblemConverter;
 import com.entity.tsp.TravellingSalesmanProblem;
 import com.entity.tsp.Tour;
