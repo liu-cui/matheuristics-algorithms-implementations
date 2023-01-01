@@ -4,16 +4,16 @@ com/common/util/OperatorUtil.java
  com.common.util.OperatorUtil
 com/entity/demo/Capacity.java
  com.entity.demo.Capacity
-com/entity/tsp/TravellingSalesmanProblem.java
- com.entity.tsp.TravellingSalesmanProblem
 com/Solution.java
  com.Solution
+com/entity/tsp/TravellingSalesmanProblem.java
+ com.entity.tsp.TravellingSalesmanProblem
 com/App.java
  com.App
-com/common/util/JsonUtil.java
- com.common.util.JsonUtil
 com/convert/TravellingSalesmanProblemConverter.java
  com.convert.TravellingSalesmanProblemConverter
+com/common/util/JsonUtil.java
+ com.common.util.JsonUtil
 com/entity/tsp/City.java
  com.entity.tsp.City
 com/entity/tsp/Tour.java
@@ -24,9 +24,9 @@ com/strategy/Strategy.java
  com.strategy.Strategy
 com/common/parameter/SimulatedAnnealingParameter.java
  com.common.parameter.SimulatedAnnealingParameter
-com/strategy/BaseStrategy.java
- com.strategy.BaseStrategy
-com/SimulatedAnnealing.java
- com.SimulatedAnnealing
 com/common/util/PlotUtil.java
  com.common.util.PlotUtil
+com/SimulatedAnnealing.java
+ com.SimulatedAnnealing
+com/strategy/BaseStrategy.java
+ com.strategy.BaseStrategy

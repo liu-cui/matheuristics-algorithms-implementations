@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class SimulatedAnnealing implements Solver {
-
     @Override
     public Tour solve(TravellingSalesmanProblem problem) {
         Tour solution = new Tour();
@@ -69,7 +68,7 @@ public class SimulatedAnnealing implements Solver {
         log.info("cost list: {}", costList);
         log.info("Simulated Annealing Iteration: {}", iter);
         log.info("Simulated Annealing Temperature {}", t);
-        plotUtil.plot(costList, problem.getType());
+//        plotUtil.plot(costList, problem.getType());
         return bestSequence;
     }
 
