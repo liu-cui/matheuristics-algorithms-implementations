@@ -74,6 +74,7 @@ public class SimulatedAnnealing implements Solver {
         log.info("Simulated Annealing Best Iteration: {}", bestIteration);
         log.info("Simulated Annealing Iteration: {}", iter);
         log.info("Simulated Annealing Temperature {}", t);
+        /*TODO: 绘图模块需要优化*/
         plotUtil.plot(costList, problem.getType());
         return bestSequence;
     }
