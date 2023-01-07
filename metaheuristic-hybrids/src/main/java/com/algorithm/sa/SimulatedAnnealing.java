@@ -1,4 +1,4 @@
-package com.algorithm;
+package com.algorithm.sa;
 
 import com.algorithm.Solver;
 import com.common.parameter.SimulatedAnnealingParameter;
