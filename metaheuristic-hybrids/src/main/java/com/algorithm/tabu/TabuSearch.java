@@ -9,4 +9,13 @@ public class TabuSearch implements Solver {
     public Tour solve(TravellingSalesmanProblem travellingSalesmanProblem) {
         return null;
     }
+
+    private int[] init(TravellingSalesmanProblem problem) {
+        int size = problem.getCityList().size();
+        int[] sequence = new int[size];
+        for (int i = 0; i < size; i++) {
+            sequence[i] = problem.getCityIdList().get(i);
+        }
+        return sequence;
+    }
 }
