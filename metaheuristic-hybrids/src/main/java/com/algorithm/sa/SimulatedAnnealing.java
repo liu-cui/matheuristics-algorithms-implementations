@@ -36,37 +36,42 @@ public class SimulatedAnnealing implements Solver {
     private int[] optimize(int[] sequence, TravellingSalesmanProblem problem) {
         OperatorUtil operatorUtil = new OperatorUtil();
         PlotUtil plotUtil = new PlotUtil();
+        Random random = new Random();
+        List<Double> costList = new ArrayList<>();
         int[] bestSequence = operatorUtil.copySequence(sequence);
         int[] currentSequence = operatorUtil.copySequence(sequence);
         double bestCost = 0D;
-        List<Double> costList = new ArrayList<>();
+        double bestIteration = 0;
         double t = SimulatedAnnealingParameter.TEMPERATURE_START;
         double tK = SimulatedAnnealingParameter.TEMPERATURE_END;
         double ratio = SimulatedAnnealingParameter.COOL_RATE;
         double iteration = SimulatedAnnealingParameter.ITERATION;
-        Random random = new Random();
         int iter = 0;
         while (t > tK) {
             for (int i = 0; i < iteration; i++) {
                 int[] updatedSequence = operatorUtil.reverse(currentSequence);
                 double curCost = cost(currentSequence, problem);
                 double updateCost = cost(updatedSequence, problem);
-                if (operatorUtil.acceptProbability(curCost, updateCost, t) >= random.nextDouble()) {
-                    bestSequence = updatedSequence;
+                if (updateCost < curCost) {
                     currentSequence = updatedSequence;
-                    bestCost = cost(bestSequence, problem);
+                    if (bestCost > updateCost) {
+                        bestCost = updateCost;
+                        bestSequence = updatedSequence;
+                    }
                 } else {
-                    bestSequence = currentSequence;
-                    bestCost = cost(currentSequence, problem);
+                    if (operatorUtil.acceptProbability(curCost, updateCost, t) >= random.nextDouble()) {
+                        currentSequence = updatedSequence;
+                        bestCost = updateCost;
+                        bestSequence = updatedSequence;
+                    }
                 }
-                log.info(String.valueOf(bestCost));
-
             }
             costList.add(bestCost);
             iter++;
             t *= (1 - ratio);
         }
         log.info("cost list: {}", costList);
+        log.info("Simulated Annealing Best Iteration: {}", bestIteration);
         log.info("Simulated Annealing Iteration: {}", iter);
         log.info("Simulated Annealing Temperature {}", t);
         plotUtil.plot(costList, problem.getType());
