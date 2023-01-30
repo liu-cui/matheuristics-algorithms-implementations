@@ -1,6 +1,6 @@
 # Matheuristics-Algorithms-Implementations
 ### current task
-- [x] simulated-annealing-algorithm
+- [x] ~~simulated-annealing-algorithm~~
 - [ ] tabu-search-algorithm
 
 ### content
