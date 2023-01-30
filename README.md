@@ -1,12 +1,11 @@
 # Matheuristics-Algorithms-Implementations
-### 当前任务
+### current task
 - [x] simulated-annealing-algorithm
 - [ ] tabu-search-algorithm
 
-### 基本目录结构
+### content
 
-目录树`tree metaheuristic-hybrids\src`
-
+path`tree metaheuristic-hybrids\src`
 
 ```
 ├─main
@@ -31,6 +30,8 @@
     │  └─com
     └─resources
 ```
+
+reset default branch
 ```
 git branch -m master main
 git fetch origin
